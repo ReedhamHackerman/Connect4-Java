@@ -1,7 +1,7 @@
 # Connect4-Java Game
 This is a Popular Java game where duo can place a discs on board of 7 * 6 . When a player manages tomake a line, column, or diagonal of 4 discs, the game ends.
 
-##Problem
+# Problem
 Connect 4 is a board game for 2 players in which the goal is to make a line, or column, or
 diagonal, of 4 colored discs in a grid of 6 rows and 7 columns. Each colored disc is “dropped” in
 the grid by a player, and falls straight down to the lowest available position within the column in
@@ -10,7 +10,8 @@ onto another disc that had already been dropped in that column.
 Each player has 21 discs; one player has blue discs and the other player has green discs
 One after the other, the players drop one disc at a time in the grid. When a player manages to
 make a line, column, or diagonal of 4 discs, the game ends.
-###Detailed Discription
+
+### Detailed Discription
 First, the initial grid is shown on the screen.
 Second, you use a prompt to ask the player 1 to enter the number of a column, using the
 following message:
@@ -43,15 +44,15 @@ Player 2 wins!
 Then, the program goes to the eighth step.
 Eighth, if there is no winner, the program goes back to the second step. If there is a winner
 or if this is a draw (if no one wins), the program will terminated and you have to run again
-##Solution
-###Create 2D Array of char(like char[][])
-###Create a Function To Get The Input From User
-###Call Array And User Input in Loop
-###First place Discs Statically
-###Check Win Condition And Modify The PlaceDiscs function
-###Validate Input (Io Exception , Input Mismatch,Range )
-###Congratulations !!! You Did It
+## Solution
+### Create 2D Array of char(like char[][])
+### Create a Function To Get The Input From User
+### Call Array And User Input in Loop
+### First place Discs Statically
+### Check Win Condition And Modify The PlaceDiscs function
+### Validate Input (Io Exception , Input Mismatch,Range )
+### Congratulations !!! You Did It
 
-#Contribution
+# Contribution
 [Reedham Patel](https://www.linkedin.com/in/reedham-patel-2319681a2/)                                                                                   
 [PC Gaming Colony](https://pcgamingcolony.com/)
