@@ -1,5 +1,5 @@
 
-import javax.swing.*;
+
 import java.awt.*;
 import java.util.Scanner;
 
@@ -12,10 +12,6 @@ public class Connect4
     public static void main(String[] args)
     {
       IOValidation ioValidation = new IOValidation();
-
-
-
-
 
         String win;
         do {
@@ -67,14 +63,24 @@ public class Connect4
     }
     public static void PrintGameBoard(char[][] myGameBoard)
     {
-        for(char[] row : myGameBoard)
+        for (int i = 0;i<8;i++)
         {
-            for(char c: row)
+            for(int j= 0;j<16;j++)
             {
-                System.out.print(c);
+                System.out.print(myGameBoard[i][j]);
             }
             System.out.println();
         }
+
+//
+//        for(char[] row : myGameBoard)
+//        {
+//            for(char c: row)
+//            {
+//                System.out.print(c);
+//            }
+//            System.out.println();
+//        }
     }
 
     public static  void PlacePiece(char[][] myGameBoard,Point point,int yAxis,String user)
