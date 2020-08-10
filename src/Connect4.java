@@ -14,32 +14,25 @@ public class Connect4
       IOValidation ioValidation = new IOValidation();
 
 
-//        for User Entry
-//        Scanner myNameScanner = new Scanner(System.in);
-//        System.out.println("Enter Player 1 Name");
-//        String player1 = myNameScanner.nextLine();
-//        System.out.println("Enter Player 1 Name");
-//        String player2 = myNameScanner.nextLine();
 
 
 
-
-        char[][] gameBoard =
-        {
-                {'6','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {'5','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {'4','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {'3','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {'2','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {'1','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
-                {' ',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' '},
-                {' ',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' '}
-        };
-        PrintGameBoard(gameBoard);
+        String win;
         do {
+            char[][] gameBoard =
+                    {
+                            {'6','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {'5','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {'4','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {'3','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {'2','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {'1','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|',' ','|'},
+                            {' ',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' '},
+                            {' ',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' '}
+                    };
+            PrintGameBoard(gameBoard);
 
-
-
+        drawAndPlayAgainCondition = true;
         while(drawAndPlayAgainCondition)
         {
 
@@ -48,9 +41,8 @@ public class Connect4
             Point tejashviPoint = new Point();
             System.out.println("Please Enter y value Between(1-7)");
             int tejashviYAxis = ioValidation.readInt(1, 7);
-            System.out.println(tejashviYAxis);
-            PlacePiece(gameBoard, tejashviPoint, tejashviYAxis, "Tejashvi");
 
+            PlacePiece(gameBoard, tejashviPoint, tejashviYAxis, "Tejashvi");
             PrintGameBoard(gameBoard);
 
 
@@ -58,15 +50,17 @@ public class Connect4
             WinningCheck(gameBoard);
             System.out.println("Please Enter y value Between(1-7)");
             int reedhamYAxis = ioValidation.readInt(1, 7);
-            System.out.println(reedhamYAxis);
+
             Point reedhamPoint = new Point();
             PlacePiece(gameBoard, reedhamPoint, reedhamYAxis, "Reedham");
             PrintGameBoard(gameBoard);
         }
+        Scanner s  = new Scanner(System.in);
+        System.out.println("Game Draw, Do U Want to continue Please Say Yes Or No");
+        win = s.nextLine();
 
 
-
-        }while (discs!=0);
+        }while (win.equalsIgnoreCase("Yes"));
 
 
 
@@ -114,22 +108,20 @@ public class Connect4
         }
         discs = discs -1;
         myGameBoard[(int) point.getX()][(int) point.getY()] = symbol;
+        if (symbol == 'B')
+        {
+            System.out.println("Player has placed a Blue disc at  column " +((int) point.getY()/2) + " and row at " +((int) point.getX()+1));
+        }
+        else
+        {
+            System.out.println("Player has placed a Green disc at  column " + ((int) point.getY() /2) + " and row at " + ((int) point.getX()+1));
+        }
 
-
-        if (discs == 0 )
+        if(discs == 0)
         {
             WinningCheck(myGameBoard);
-            System.out.println("Game Draw , Unfortunately");
-            System.out.println("Do You want To Play it Again...Hmmm?");
-            System.out.println("Just Answer In Yes Or No");
-            Scanner string  = new Scanner(System.in);
-            String s  = string.nextLine();
-            if (s.equalsIgnoreCase("yes"));
-            {
-                discs = 42;
-                drawAndPlayAgainCondition = true;
-            }
-
+            drawAndPlayAgainCondition = false;
+        }
 
 
 
@@ -141,7 +133,7 @@ public class Connect4
 
 
 
-    }
+
 
 
     private static void WinningCheck(char[][] gameBoard)
@@ -223,17 +215,6 @@ public class Connect4
 
     }
 
-// We Can Check Full Value But Not Now
-//    public static boolean IsFull(char[][] myGameBoard)
-//    {
-//        return (myGameBoard[0][2] == 'B' || myGameBoard[0][2] == 'G')
-//                || (myGameBoard[0][4] == 'B' || myGameBoard[0][4] == 'G')
-//                || (myGameBoard[0][6] == 'B' || myGameBoard[0][6] == 'G')
-//                || (myGameBoard[0][8] == 'B' || myGameBoard[0][8] == 'G')
-//                || (myGameBoard[0][10] == 'B' || myGameBoard[0][10] == 'G')
-//                || (myGameBoard[0][12] == 'B' || myGameBoard[0][12] == 'G')
-//                || (myGameBoard[0][14] == 'B' || myGameBoard[0][14] == 'G');
-//    }
 
 
 }
