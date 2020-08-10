@@ -1,11 +1,14 @@
 
+import javax.swing.*;
 import java.awt.*;
-
+import java.util.Scanner;
 
 
 public class Connect4
 {
 
+    public static int discs = 42;
+    public static   Boolean drawAndPlayAgainCondition = true;
     public static void main(String[] args)
     {
       IOValidation ioValidation = new IOValidation();
@@ -17,6 +20,7 @@ public class Connect4
 //        String player1 = myNameScanner.nextLine();
 //        System.out.println("Enter Player 1 Name");
 //        String player2 = myNameScanner.nextLine();
+
 
 
 
@@ -32,13 +36,15 @@ public class Connect4
                 {' ',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' '}
         };
         PrintGameBoard(gameBoard);
+        do {
 
 
-        while(true)
+
+        while(drawAndPlayAgainCondition)
         {
 
 
-            Foring(gameBoard);
+            WinningCheck(gameBoard);
             Point tejashviPoint = new Point();
             System.out.println("Please Enter y value Between(1-7)");
             int tejashviYAxis = ioValidation.readInt(1, 7);
@@ -49,7 +55,7 @@ public class Connect4
 
 
 
-            Foring(gameBoard);
+            WinningCheck(gameBoard);
             System.out.println("Please Enter y value Between(1-7)");
             int reedhamYAxis = ioValidation.readInt(1, 7);
             System.out.println(reedhamYAxis);
@@ -60,7 +66,7 @@ public class Connect4
 
 
 
-
+        }while (discs!=0);
 
 
 
@@ -106,10 +112,29 @@ public class Connect4
 
             }
         }
-
-
-
+        discs = discs -1;
         myGameBoard[(int) point.getX()][(int) point.getY()] = symbol;
+
+
+        if (discs == 0 )
+        {
+            WinningCheck(myGameBoard);
+            System.out.println("Game Draw , Unfortunately");
+            System.out.println("Do You want To Play it Again...Hmmm?");
+            System.out.println("Just Answer In Yes Or No");
+            Scanner string  = new Scanner(System.in);
+            String s  = string.nextLine();
+            if (s.equalsIgnoreCase("yes"));
+            {
+                discs = 42;
+                drawAndPlayAgainCondition = true;
+            }
+
+
+
+
+        }
+
 
 
 
@@ -119,12 +144,13 @@ public class Connect4
     }
 
 
-    private static void Foring(char[][] gameBoard)
+    private static void WinningCheck(char[][] gameBoard)
+
     {
-        //column win check
-        for (int i = 0 ; i<=6 ;i++)
+        //Row win check
+        for (int i = 0 ; i<=5 ;i++)
         {
-            for(int j = 0; j<=3;j++)
+            for(int j = 0; j<=4;j++)
             {
 
                 if(gameBoard[i][j*2]=='B' & gameBoard[i][(j+1)*2] == 'B' & gameBoard[i][(j+2)*2] == 'B' & gameBoard[i][(j+3)*2] == 'B')
@@ -141,7 +167,7 @@ public class Connect4
             }
 
         }
-        // Row win Condition
+        // Column win Condition
         for(int i=0;i<=2;i++)
         {
             for(int j = 0;j<=3;j++)

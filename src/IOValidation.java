@@ -15,7 +15,7 @@ public class IOValidation
                 if (userInput >= min && userInput <= max) {
                     return userInput;
                 } else {
-                    System.out.println("Error: Selection must be between " + max + "and" + min);
+                    System.out.println("Error: Selection must be between  " + min + " and " + max);
 
                 }
             }
