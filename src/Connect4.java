@@ -13,7 +13,7 @@ public class Connect4
     {
       IOValidation ioValidation = new IOValidation();
 
-        String win;
+        String reRunTheCode;
         do {
             char[][] gameBoard =
                     {
@@ -53,10 +53,10 @@ public class Connect4
         }
         Scanner s  = new Scanner(System.in);
         System.out.println("Game Draw, Do U Want to continue Please Say Yes Or No");
-        win = s.nextLine();
+        reRunTheCode = s.nextLine();
 
 
-        }while (win.equalsIgnoreCase("Yes"));
+        }while (reRunTheCode.equalsIgnoreCase("Yes"));
 
 
 
@@ -87,8 +87,6 @@ public class Connect4
     {
         IOValidation myIoValidate = new IOValidation();
         point.x=5;
-
-
         point.y = (2 * yAxis) ;
         char symbol = ' ';
         if(user.equals("Tejashvi"))
@@ -126,6 +124,7 @@ public class Connect4
         if(discs == 0)
         {
             WinningCheck(myGameBoard);
+            discs = 42;
             drawAndPlayAgainCondition = false;
         }
 
