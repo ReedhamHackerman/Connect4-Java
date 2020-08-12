@@ -26,14 +26,16 @@ public class Connect4
                             {' ',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' ','-',' '},
                             {' ',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' '}
                     };
-            PrintGameBoard(gameBoard);
+        PrintGameBoard(gameBoard);
+        discs = 42;
+        Scanner s  = new Scanner(System.in);
         String user = "Tejashvi";
         drawAndPlayAgainCondition = true;
         while(drawAndPlayAgainCondition)
         {
 
 
-            WinningCheck(gameBoard);
+
             Point tejashviPoint = new Point();
             System.out.println("Please Enter y value Between(1-7)");
             int tejashviYAxis = ioValidation.readInt(1, 7);
@@ -47,7 +49,7 @@ public class Connect4
             }
             PlacePiece(gameBoard, tejashviPoint, tejashviYAxis, user);
             PrintGameBoard(gameBoard);
-
+            WinningCheck(gameBoard);
 
 //
 //            WinningCheck(gameBoard);
@@ -58,9 +60,19 @@ public class Connect4
 //            PlacePiece(gameBoard, reedhamPoint, reedhamYAxis, "Reedham");
 //            PrintGameBoard(gameBoard);
         }
-        Scanner s  = new Scanner(System.in);
-        System.out.println("Game Draw, Do U Want to continue Please Say Yes Or No");
-        reRunTheCode = s.nextLine();
+
+        if(discs == 0)
+        {
+
+            System.out.println("Game Draw, Do U Want to continue Please Say Yes Or No");
+
+        }
+        else
+        {
+
+            System.out.println("Do U Want to continue Please Say Yes Or No");
+        }
+            reRunTheCode = s.nextLine();
 
 
         }while (reRunTheCode.equalsIgnoreCase("Yes"));
@@ -70,24 +82,24 @@ public class Connect4
     }
     public static void PrintGameBoard(char[][] myGameBoard)
     {
-        for (int i = 0;i<8;i++)
-        {
-            for(int j= 0;j<16;j++)
-            {
-                System.out.print(myGameBoard[i][j]);
-            }
-            System.out.println();
-        }
-
-//
-//        for(char[] row : myGameBoard)
+//        for (int i = 0;i<8;i++)
 //        {
-//            for(char c: row)
+//            for(int j= 0;j<16;j++)
 //            {
-//                System.out.print(c);
+//                System.out.print(myGameBoard[i][j]);
 //            }
 //            System.out.println();
 //        }
+
+
+        for(char[] row : myGameBoard)
+        {
+            for(char c: row)
+            {
+                System.out.print(c);
+            }
+            System.out.println();
+        }
     }
 
     public static  void PlacePiece(char[][] myGameBoard,Point point,int yAxis,String user)
@@ -117,21 +129,20 @@ public class Connect4
 
             }
         }
-        discs = discs -1;
+
         myGameBoard[(int) point.getX()][(int) point.getY()] = symbol;
         if (symbol == 'B')
         {
-            System.out.println("Player has placed a Blue disc at  column " +((int) point.getY()/2) + " and row at " +((int) point.getX()+1));
+            System.out.println("Player has placed a Blue disc at  column " +((int) point.getY()/2) + " and row at " +(6-(int) point.getX()));
         }
         else
         {
-            System.out.println("Player has placed a Green disc at  column " + ((int) point.getY() /2) + " and row at " + ((int) point.getX()+1));
+            System.out.println("Player has placed a Green disc at  column " + ((int) point.getY() /2) + " and row at " + (6-(int) point.getX()));
         }
-
+        discs = discs -1;
         if(discs == 0)
         {
             WinningCheck(myGameBoard);
-            discs = 42;
             drawAndPlayAgainCondition = false;
         }
 
@@ -160,12 +171,14 @@ public class Connect4
                 if(gameBoard[i][j*2]=='B' & gameBoard[i][(j+1)*2] == 'B' & gameBoard[i][(j+2)*2] == 'B' & gameBoard[i][(j+3)*2] == 'B')
                 {
                     System.out.println("Reedham Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
                 if(gameBoard[i][j*2]=='G' & gameBoard[i][(j+1)*2] == 'G' & gameBoard[i][(j+2)*2] == 'G' & gameBoard[i][(j+3)*2] == 'G')
                 {
                     System.out.println("Tejashvi Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
 
             }
@@ -179,12 +192,14 @@ public class Connect4
                 if(gameBoard[i][j*2]=='B' & gameBoard[i+1][j*2] == 'B' & gameBoard[i+2][j*2] == 'B'& gameBoard[i+3][j*2]=='B')
                 {
                     System.out.println("Reedham Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
                 if(gameBoard[i][j*2]=='G' & gameBoard[i+1][j*2] == 'G' & gameBoard[i+2][j*2] == 'G'& gameBoard[i+3][j*2]=='G' )
                 {
                     System.out.println("Tejashvi Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
             }
         }
@@ -197,12 +212,14 @@ public class Connect4
                 if (gameBoard[i][j*2]=='B'& gameBoard[i+1][(j+1)*2]=='B'& gameBoard[i+2][(j+2)*2]=='B'& gameBoard[i+3][(j+3)*2]=='B')
                 {
                     System.out.println("Reedham Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
                 if (gameBoard[i][j*2]=='G'& gameBoard[i+1][(j+1)*2]=='G'& gameBoard[i+2][(j+2)*2]=='G'& gameBoard[i+3][(j+3)*2]=='G')
                 {
                     System.out.println("Tejashvi Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
             }
         }
@@ -214,12 +231,14 @@ public class Connect4
                 if (gameBoard[i][(j+4)*2]=='B'& gameBoard[i+1][(j+3)*2]=='B'& gameBoard[i+2][(j+2)*2]=='B' & gameBoard[i+3][(j+1)*2]=='B')
                 {
                     System.out.println("Reedham Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
                 if (gameBoard[i][(j+4)*2]=='G'& gameBoard[i+1][(j+3)*2]=='G'& gameBoard[i+2][(j+2)*2]=='G' & gameBoard[i+3][(j+1)*2]=='G')
                 {
                     System.out.println("Tejashvi Won");
-                    System.exit(0);
+                    drawAndPlayAgainCondition = false;
+                    return;
                 }
             }
         }
