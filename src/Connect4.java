@@ -27,7 +27,7 @@ public class Connect4
                             {' ',' ','1',' ','2',' ','3',' ','4',' ','5',' ','6',' ','7',' '}
                     };
             PrintGameBoard(gameBoard);
-
+        String user = "Tejashvi";
         drawAndPlayAgainCondition = true;
         while(drawAndPlayAgainCondition)
         {
@@ -37,19 +37,26 @@ public class Connect4
             Point tejashviPoint = new Point();
             System.out.println("Please Enter y value Between(1-7)");
             int tejashviYAxis = ioValidation.readInt(1, 7);
-
-            PlacePiece(gameBoard, tejashviPoint, tejashviYAxis, "Tejashvi");
+            if (user.equals("Tejashvi"))
+            {
+                user = "Reedham";
+            }
+            else
+            {
+                user = "Tejashvi";
+            }
+            PlacePiece(gameBoard, tejashviPoint, tejashviYAxis, user);
             PrintGameBoard(gameBoard);
 
 
-
-            WinningCheck(gameBoard);
-            System.out.println("Please Enter y value Between(1-7)");
-            int reedhamYAxis = ioValidation.readInt(1, 7);
-
-            Point reedhamPoint = new Point();
-            PlacePiece(gameBoard, reedhamPoint, reedhamYAxis, "Reedham");
-            PrintGameBoard(gameBoard);
+//
+//            WinningCheck(gameBoard);
+//            System.out.println("Please Enter y value Between(1-7)");
+//            int reedhamYAxis = ioValidation.readInt(1, 7);
+//
+//            Point reedhamPoint = new Point();
+//            PlacePiece(gameBoard, reedhamPoint, reedhamYAxis, "Reedham");
+//            PrintGameBoard(gameBoard);
         }
         Scanner s  = new Scanner(System.in);
         System.out.println("Game Draw, Do U Want to continue Please Say Yes Or No");
@@ -167,7 +174,7 @@ public class Connect4
         // Column win Condition
         for(int i=0;i<=2;i++)
         {
-            for(int j = 0;j<=3;j++)
+            for(int j = 0;j<=7;j++)
             {
                 if(gameBoard[i][j*2]=='B' & gameBoard[i+1][j*2] == 'B' & gameBoard[i+2][j*2] == 'B'& gameBoard[i+3][j*2]=='B')
                 {
@@ -183,9 +190,9 @@ public class Connect4
         }
 
         //ForWard Diagonal
-        for (int i=0;i<=2;i++)
+        for (int i=0;i<=3;i++)
         {
-            for (int j=0;j<=3;j++)
+            for (int j=0;j<=4;j++)
             {
                 if (gameBoard[i][j*2]=='B'& gameBoard[i+1][(j+1)*2]=='B'& gameBoard[i+2][(j+2)*2]=='B'& gameBoard[i+3][(j+3)*2]=='B')
                 {
